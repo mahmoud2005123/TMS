@@ -1,23 +1,114 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="ar" dir="rtl" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training Management System</title>
+    <title>نظام إدارة التدريب | Training Management System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <style>
         :root {
             --primary-color: #24292e;
             --secondary-color: #2ea44f;
+            --accent-color: #0366d6;
         }
         [data-bs-theme="dark"] {
             --primary-color: #c9d1d9;
             --secondary-color: #3fb950;
+            --accent-color: #58a6ff;
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             transition: background-color 0.3s ease;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 6rem 0;
+            margin-top: -4rem;
+            margin-bottom: 4rem;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+        .navbar {
+            background-color: transparent !important;
+            transition: background-color 0.3s ease;
+        }
+        .navbar.scrolled {
+            background-color: var(--primary-color) !important;
+        }
+        .navbar-brand {
+            color: white !important;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: white !important;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        .feature-card {
+            border: 1px solid var(--bs-border-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            height: 100%;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        .download-section {
+            background-color: var(--bs-tertiary-bg);
+            padding: 4rem 0;
+            margin: 4rem 0;
+            border-radius: 1rem;
+        }
+        .btn-download {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+        .btn-download:hover {
+            transform: translateY(-2px);
+            color: white;
+            background-color: var(--secondary-color);
+        }
+        .stats-item {
+            text-align: center;
+            padding: 2rem;
+        }
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+        .stats-label {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        .screenshot {
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        .screenshot:hover {
+            transform: scale(1.02);
         }
         .navbar {
             background-color: var(--primary-color);
@@ -111,14 +202,6 @@
             color: var(--secondary-color);
             margin: 0 0.5rem;
         }
-        .feature-card {
-            border: 1px solid var(--bs-border-color);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .feature-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
         .setup-step {
             position: relative;
             padding-left: 2.5rem;
@@ -141,7 +224,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg mb-4">
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">TMS</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -150,239 +233,333 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
+                        <a class="nav-link" href="#features">المميزات</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#setup">Setup</a>
+                        <a class="nav-link" href="#download">تحميل</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#schema">Schema</a>
+                        <a class="nav-link" href="#setup">التثبيت</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#deployment">نشر البرنامج</a>
+                        <a class="nav-link" href="#schema">قاعدة البيانات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#deployment">النشر</a>
                     </li>
                 </ul>
-                <button class="theme-toggle" id="themeToggle">
+                <button class="theme-toggle ms-2" id="themeToggle">
                     <i class="bi bi-sun-fill" id="themeIcon"></i>
                 </button>
+                <a href="https://github.com/mahmoud2005123/TMS" class="btn btn-outline-light ms-3">
+                    <i class="bi bi-github me-2"></i>GitHub
+                </a>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <header class="text-center mb-5">
-                    <h1 class="display-4 mb-3">Training Management System</h1>
-                    <p class="lead mb-4">A MySQL-based training management system for tracking students, organizations, supervisors, and training reports.</p>
-                    <a href="https://github.com/mahmoud2005123/TMS" class="btn-github">
-                        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                        </svg>
-                        View on GitHub
-                    </a>
-                </header>
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="hero-title">نظام إدارة التدريب</h1>
+            <p class="hero-subtitle mb-5">حل متكامل لإدارة برامج التدريب والمتدربين والمشرفين</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#download" class="btn btn-download">
+                    <i class="bi bi-download me-2"></i>تحميل البرنامج
+                </a>
+                <a href="#features" class="btn btn-outline-light">
+                    <i class="bi bi-info-circle me-2"></i>تعرف على المميزات
+                </a>
+            </div>
+        </div>
+    </section>
 
-                <section id="features" class="mb-5">
-                    <h2 class="mb-4">Features</h2>
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <div class="card h-100 feature-card">
-                                <div class="card-body">
-                                    <h5 class="card-title"><i class="bi bi-person-badge me-2"></i>Student Management</h5>
-                                    <p class="card-text">Comprehensive student information tracking including academic details, enrollment year, and contact information.</p>
-                                </div>
-                            </div>
+    <div class="container mt-5">
+        <section class="text-center mb-5">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stats-item">
+                        <div class="stats-number">7</div>
+                        <div class="stats-label">جداول بيانات</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-item">
+                        <div class="stats-number">4</div>
+                        <div class="stats-label">أدوار مستخدمين</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-item">
+                        <div class="stats-number">100%</div>
+                        <div class="stats-label">مجاني ومفتوح المصدر</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-item">
+                        <div class="stats-number">2023</div>
+                        <div class="stats-label">آخر تحديث</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="mb-5">
+            <h2 class="text-center mb-5">المميزات الرئيسية</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-person-badge feature-icon"></i>
+                            <h5 class="card-title">إدارة المتدربين</h5>
+                            <p class="card-text">إدارة شاملة لمعلومات الطلاب الأكاديمية وبيانات التواصل</p>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card h-100 feature-card">
-                                <div class="card-body">
-                                    <h5 class="card-title"><i class="bi bi-building me-2"></i>Organization Tracking</h5>
-                                    <p class="card-text">Manage training organizations and their locations for student placements.</p>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-building feature-icon"></i>
+                            <h5 class="card-title">إدارة المؤسسات</h5>
+                            <p class="card-text">تتبع المؤسسات التدريبية ومواقعها لتنسيب الطلاب</p>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card h-100 feature-card">
-                                <div class="card-body">
-                                    <h5 class="card-title"><i class="bi bi-people me-2"></i>Supervisor Management</h5>
-                                    <p class="card-text">Track both internal and external supervisors with their respective departments and organizations.</p>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-people feature-icon"></i>
+                            <h5 class="card-title">إدارة المشرفين</h5>
+                            <p class="card-text">متابعة المشرفين الداخليين والخارجيين مع أقسامهم ومؤسساتهم</p>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card h-100 feature-card">
-                                <div class="card-body">
-                                    <h5 class="card-title"><i class="bi bi-file-earmark-text me-2"></i>Training Reports & Evaluation</h5>
-                                    <p class="card-text">Submit and evaluate training reports with detailed feedback and scoring system.</p>
-                                </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-file-earmark-text feature-icon"></i>
+                            <h5 class="card-title">التقارير والتقييم</h5>
+                            <p class="card-text">تقديم وتقييم تقارير التدريب مع نظام تغذية راجعة مفصل</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-shield-check feature-icon"></i>
+                            <h5 class="card-title">إدارة الصلاحيات</h5>
+                            <p class="card-text">نظام متكامل لإدارة صلاحيات المستخدمين بأدوار مختلفة</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-graph-up feature-icon"></i>
+                            <h5 class="card-title">التقارير الإحصائية</h5>
+                            <p class="card-text">إنشاء وعرض تقارير إحصائية عن أداء التدريب والمتدربين</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="download-section text-center">
+            <div class="container">
+                <h2 class="mb-4">تحميل البرنامج</h2>
+                <p class="lead mb-5">قم بتحميل أحدث نسخة من نظام إدارة التدريب</p>
+                <div class="row justify-content-center g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="bi bi-github me-2"></i>
+                                    GitHub Release
+                                </h5>
+                                <p class="card-text">تحميل مباشر من GitHub</p>
+                                <a href="https://github.com/mahmoud2005123/TMS/archive/refs/heads/main.zip" class="btn btn-primary">
+                                    <i class="bi bi-download me-2"></i>تحميل (.zip)
+                                </a>
                             </div>
                         </div>
                     </div>
-                </section>
-
-                <section id="setup" class="mb-5">
-                    <h2 class="mb-4">Setup Guide</h2>
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="h5 mb-3">Requirements</h3>
-                            <ul class="mb-4 list-unstyled">
-                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Python 3.x</li>
-                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>MySQL Server</li>
-                                <li><i class="bi bi-check-circle-fill text-success me-2"></i><code>mysql-connector-python</code> package</li>
-                            </ul>
-
-                            <h3 class="h5 mb-3">Installation Steps</h3>
-                            <div class="setup-step mb-4" data-step="1">
-                                <h4 class="h6">Install Required Package</h4>
-                                <pre><code>pip install mysql-connector-python</code></pre>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="bi bi-git me-2"></i>
+                                    Clone Repository
+                                </h5>
+                                <p class="card-text">نسخ المستودع باستخدام Git</p>
+                                <pre class="bg-light p-2 rounded"><code>git clone https://github.com/mahmoud2005123/TMS.git</code></pre>
                             </div>
-                            
-                            <div class="setup-step mb-4" data-step="2">
-                                <h4 class="h6">Configure MySQL Connection</h4>
-                                <p>Update the database credentials in <code>db_connection.py</code></p>
-                                <pre><code>host: localhost
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="setup" class="mb-5">
+            <h2 class="mb-4">التثبيت</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="h5 mb-3">المتطلبات</h3>
+                    <ul class="mb-4 list-unstyled">
+                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Python 3.x</li>
+                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>MySQL Server</li>
+                        <li><i class="bi bi-check-circle-fill text-success me-2"></i><code>mysql-connector-python</code> package</li>
+                    </ul>
+
+                    <h3 class="h5 mb-3">الخطوات</h3>
+                    <div class="setup-step mb-4" data-step="1">
+                        <h4 class="h6">تثبيت الحزمة المطلوبة</h4>
+                        <pre><code>pip install mysql-connector-python</code></pre>
+                    </div>
+                    
+                    <div class="setup-step mb-4" data-step="2">
+                        <h4 class="h6">تكوين اتصال MySQL</h4>
+                        <p>تحديث بيانات اتصال القاعدة البيانية في <code>db_connection.py</code></p>
+                        <pre><code>host: localhost
 user: root
 password: mahmoud
 database: training_mm</code></pre>
-                            </div>
-                            
-                            <div class="setup-step" data-step="3">
-                                <h4 class="h6">Initialize Database</h4>
-                                <pre><code>python db_connection.py</code></pre>
-                            </div>
-                        </div>
                     </div>
-                </section>
-
-                <section id="schema" class="mb-5">
-                    <h2 class="mb-4">Database Schema</h2>
                     
-                    <div class="table-relationships mb-4">
-                        <h4 class="mb-3">Table Relationships</h4>
-                        <pre>
+                    <div class="setup-step" data-step="3">
+                        <h4 class="h6">تهيئة القاعدة</h4>
+                        <pre><code>python db_connection.py</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="schema" class="mb-5">
+            <h2 class="mb-4">قاعدة البيانات</h2>
+            
+            <div class="table-relationships mb-4">
+                <h4 class="mb-3">علاقات الجداول</h4>
+                <pre>
 students <span class="relationship-arrow">←</span> training_reports <span class="relationship-arrow">→</span> organizations
 training_reports <span class="relationship-arrow">←</span> evaluations <span class="relationship-arrow">→</span> internal_supervisors
 organizations <span class="relationship-arrow">←</span> external_supervisors</pre>
-                    </div>
-                    
-                    <div class="schema-table">
-                        <h4>students</h4>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-key-fill me-2"></i><code>student_id</code> (INT, Primary Key)</li>
-                            <li><i class="bi bi-person me-2"></i><code>student_name</code> (VARCHAR(100))</li>
-                            <li><i class="bi bi-book me-2"></i><code>program</code> (VARCHAR(100))</li>
-                            <li><i class="bi bi-calendar me-2"></i><code>enrollment_year</code> (INT, 2015-2025)</li>
-                            <li><i class="bi bi-graph-up me-2"></i><code>cgpa</code> (DECIMAL(3,2), 0.00-4.00)</li>
-                            <li><i class="bi bi-envelope me-2"></i><code>email</code> (VARCHAR(100), Unique)</li>
-                            <li><i class="bi bi-telephone me-2"></i><code>phone</code> (VARCHAR(15))</li>
-                        </ul>
-                    </div>
+            </div>
+            
+            <div class="schema-table">
+                <h4>students</h4>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-key-fill me-2"></i><code>student_id</code> (INT, Primary Key)</li>
+                    <li><i class="bi bi-person me-2"></i><code>student_name</code> (VARCHAR(100))</li>
+                    <li><i class="bi bi-book me-2"></i><code>program</code> (VARCHAR(100))</li>
+                    <li><i class="bi bi-calendar me-2"></i><code>enrollment_year</code> (INT, 2015-2025)</li>
+                    <li><i class="bi bi-graph-up me-2"></i><code>cgpa</code> (DECIMAL(3,2), 0.00-4.00)</li>
+                    <li><i class="bi bi-envelope me-2"></i><code>email</code> (VARCHAR(100), Unique)</li>
+                    <li><i class="bi bi-telephone me-2"></i><code>phone</code> (VARCHAR(15))</li>
+                </ul>
+            </div>
 
-                    <div class="schema-table">
-                        <h4>organizations</h4>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-key-fill me-2"></i><code>organization_id</code> (INT, Primary Key)</li>
-                            <li><i class="bi bi-building me-2"></i><code>organization_name</code> (VARCHAR(100), Unique)</li>
-                            <li><i class="bi bi-geo-alt me-2"></i><code>location</code> (VARCHAR(100))</li>
-                        </ul>
-                    </div>
+            <div class="schema-table">
+                <h4>organizations</h4>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-key-fill me-2"></i><code>organization_id</code> (INT, Primary Key)</li>
+                    <li><i class="bi bi-building me-2"></i><code>organization_name</code> (VARCHAR(100), Unique)</li>
+                    <li><i class="bi bi-geo-alt me-2"></i><code>location</code> (VARCHAR(100))</li>
+                </ul>
+            </div>
 
-                    <div class="schema-table">
-                        <h4>internal_supervisors</h4>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-key-fill me-2"></i><code>supervisor_id</code> (INT, Primary Key)</li>
-                            <li><i class="bi bi-person me-2"></i><code>supervisor_name</code> (VARCHAR(100))</li>
-                            <li><i class="bi bi-diagram-2 me-2"></i><code>department</code> (VARCHAR(100))</li>
-                        </ul>
-                    </div>
+            <div class="schema-table">
+                <h4>internal_supervisors</h4>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-key-fill me-2"></i><code>supervisor_id</code> (INT, Primary Key)</li>
+                    <li><i class="bi bi-person me-2"></i><code>supervisor_name</code> (VARCHAR(100))</li>
+                    <li><i class="bi bi-diagram-2 me-2"></i><code>department</code> (VARCHAR(100))</li>
+                </ul>
+            </div>
 
-                    <div class="schema-table">
-                        <h4>external_supervisors</h4>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-key-fill me-2"></i><code>supervisor_id</code> (INT, Primary Key)</li>
-                            <li><i class="bi bi-person me-2"></i><code>supervisor_name</code> (VARCHAR(100))</li>
-                            <li><i class="bi bi-arrow-left-right me-2"></i><code>organization_id</code> (INT, Foreign Key)</li>
-                        </ul>
-                    </div>
+            <div class="schema-table">
+                <h4>external_supervisors</h4>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-key-fill me-2"></i><code>supervisor_id</code> (INT, Primary Key)</li>
+                    <li><i class="bi bi-person me-2"></i><code>supervisor_name</code> (VARCHAR(100))</li>
+                    <li><i class="bi bi-arrow-left-right me-2"></i><code>organization_id</code> (INT, Foreign Key)</li>
+                </ul>
+            </div>
 
-                    <div class="schema-table">
-                        <h4>training_reports</h4>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-key-fill me-2"></i><code>report_id</code> (INT, Primary Key)</li>
-                            <li><i class="bi bi-arrow-left-right me-2"></i><code>student_id</code> (INT, Foreign Key)</li>
-                            <li><i class="bi bi-arrow-left-right me-2"></i><code>organization_id</code> (INT, Foreign Key)</li>
-                            <li><i class="bi bi-calendar-date me-2"></i><code>report_date</code> (DATE, 2023 only)</li>
-                            <li><i class="bi bi-file-text me-2"></i><code>report_text</code> (VARCHAR(1000))</li>
-                        </ul>
-                    </div>
+            <div class="schema-table">
+                <h4>training_reports</h4>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-key-fill me-2"></i><code>report_id</code> (INT, Primary Key)</li>
+                    <li><i class="bi bi-arrow-left-right me-2"></i><code>student_id</code> (INT, Foreign Key)</li>
+                    <li><i class="bi bi-arrow-left-right me-2"></i><code>organization_id</code> (INT, Foreign Key)</li>
+                    <li><i class="bi bi-calendar-date me-2"></i><code>report_date</code> (DATE, 2023 only)</li>
+                    <li><i class="bi bi-file-text me-2"></i><code>report_text</code> (VARCHAR(1000))</li>
+                </ul>
+            </div>
 
-                    <div class="schema-table">
-                        <h4>evaluations</h4>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-key-fill me-2"></i><code>evaluation_id</code> (INT, Primary Key)</li>
-                            <li><i class="bi bi-arrow-left-right me-2"></i><code>report_id</code> (INT, Foreign Key)</li>
-                            <li><i class="bi bi-arrow-left-right me-2"></i><code>supervisor_id</code> (INT, Foreign Key)</li>
-                            <li><i class="bi bi-calendar-date me-2"></i><code>evaluation_date</code> (DATE, 2023 only)</li>
-                            <li><i class="bi bi-star me-2"></i><code>evaluation_score</code> (DECIMAL(5,2), 0-100)</li>
-                            <li><i class="bi bi-chat-text me-2"></i><code>evaluation_comments</code> (VARCHAR(1000))</li>
-                        </ul>
-                    </div>
+            <div class="schema-table">
+                <h4>evaluations</h4>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-key-fill me-2"></i><code>evaluation_id</code> (INT, Primary Key)</li>
+                    <li><i class="bi bi-arrow-left-right me-2"></i><code>report_id</code> (INT, Foreign Key)</li>
+                    <li><i class="bi bi-arrow-left-right me-2"></i><code>supervisor_id</code> (INT, Foreign Key)</li>
+                    <li><i class="bi bi-calendar-date me-2"></i><code>evaluation_date</code> (DATE, 2023 only)</li>
+                    <li><i class="bi bi-star me-2"></i><code>evaluation_score</code> (DECIMAL(5,2), 0-100)</li>
+                    <li><i class="bi bi-chat-text me-2"></i><code>evaluation_comments</code> (VARCHAR(1000))</li>
+                </ul>
+            </div>
 
-                    <div class="schema-table">
-                        <h4>users</h4>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-key-fill me-2"></i><code>id</code> (INT, Auto Increment, Primary Key)</li>
-                            <li><i class="bi bi-person me-2"></i><code>username</code> (VARCHAR(50), Unique)</li>
-                            <li><i class="bi bi-lock me-2"></i><code>password</code> (VARCHAR(255))</li>
-                            <li><i class="bi bi-person-badge me-2"></i><code>full_name</code> (VARCHAR(100))</li>
-                            <li><i class="bi bi-envelope me-2"></i><code>email</code> (VARCHAR(100), Unique)</li>
-                            <li><i class="bi bi-person-gear me-2"></i><code>role</code> (ENUM: admin, trainer, trainee, supervisor)</li>
-                            <li><i class="bi bi-clock me-2"></i><code>created_at</code> (TIMESTAMP)</li>
-                        </ul>
-                    </div>
-                </section>
+            <div class="schema-table">
+                <h4>users</h4>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-key-fill me-2"></i><code>id</code> (INT, Auto Increment, Primary Key)</li>
+                    <li><i class="bi bi-person me-2"></i><code>username</code> (VARCHAR(50), Unique)</li>
+                    <li><i class="bi bi-lock me-2"></i><code>password</code> (VARCHAR(255))</li>
+                    <li><i class="bi bi-person-badge me-2"></i><code>full_name</code> (VARCHAR(100))</li>
+                    <li><i class="bi bi-envelope me-2"></i><code>email</code> (VARCHAR(100), Unique)</li>
+                    <li><i class="bi bi-person-gear me-2"></i><code>role</code> (ENUM: admin, trainer, trainee, supervisor)</li>
+                    <li><i class="bi bi-clock me-2"></i><code>created_at</code> (TIMESTAMP)</li>
+                </ul>
+            </div>
+        </section>
 
-                <section id="deployment" class="mb-5">
-                    <h2 class="mb-4">نشر البرنامج (Deployment Guide)</h2>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="deployment-step mb-4" data-step="1">
-                                <h4 class="h5">إعداد قاعدة البيانات (Database Setup)</h4>
-                                <ol class="list-unstyled">
-                                    <li class="mb-3">
-                                        <i class="bi bi-1-circle-fill text-success me-2"></i>
-                                        <strong>تثبيت MySQL Server على الخادم (Install MySQL Server)</strong>
-                                        <ul>
-                                            <li>Download from <a href="https://dev.mysql.com/downloads/mysql/" target="_blank">MySQL Official Website</a></li>
-                                            <li>Follow installation instructions for your operating system</li>
-                                        </ul>
-                                    </li>
-                                    <li class="mb-3">
-                                        <i class="bi bi-2-circle-fill text-success me-2"></i>
-                                        <strong>تكوين قاعدة البيانات (Configure Database)</strong>
-                                        <pre><code>mysql -u root -p
+        <section id="deployment" class="mb-5">
+            <h2 class="mb-4">النشر</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="deployment-step mb-4" data-step="1">
+                        <h4 class="h5">إعداد قاعدة البيانات (Database Setup)</h4>
+                        <ol class="list-unstyled">
+                            <li class="mb-3">
+                                <i class="bi bi-1-circle-fill text-success me-2"></i>
+                                <strong>تثبيت MySQL Server على الخادم (Install MySQL Server)</strong>
+                                <ul>
+                                    <li>Download from <a href="https://dev.mysql.com/downloads/mysql/" target="_blank">MySQL Official Website</a></li>
+                                    <li>Follow installation instructions for your operating system</li>
+                                </ul>
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-2-circle-fill text-success me-2"></i>
+                                <strong>تكوين قاعدة البيانات (Configure Database)</strong>
+                                <pre><code>mysql -u root -p
 CREATE DATABASE training_mm;
 USE training_mm;</code></pre>
-                                    </li>
-                                </ol>
-                            </div>
+                            </li>
+                        </ol>
+                    </div>
 
-                            <div class="deployment-step mb-4" data-step="2">
-                                <h4 class="h5">إعداد البيئة (Environment Setup)</h4>
-                                <ol class="list-unstyled">
-                                    <li class="mb-3">
-                                        <i class="bi bi-1-circle-fill text-success me-2"></i>
-                                        <strong>تثبيت Python (Install Python)</strong>
-                                        <ul>
-                                            <li>Download Python 3.x from <a href="https://www.python.org/downloads/" target="_blank">Python.org</a></li>
-                                            <li>Make sure to check "Add Python to PATH" during installation</li>
-                                        </ul>
-                                    </li>
-                                    <li class="mb-3">
-                                        <i class="bi bi-2-circle-fill text-success me-2"></i>
-                                        <strong>إنشاء البيئة الافتراضية (Create Virtual Environment)</strong>
-                                        <pre><code># Create virtual environment
+                    <div class="deployment-step mb-4" data-step="2">
+                        <h4 class="h5">إعداد البيئة (Environment Setup)</h4>
+                        <ol class="list-unstyled">
+                            <li class="mb-3">
+                                <i class="bi bi-1-circle-fill text-success me-2"></i>
+                                <strong>تثبيت Python (Install Python)</strong>
+                                <ul>
+                                    <li>Download Python 3.x from <a href="https://www.python.org/downloads/" target="_blank">Python.org</a></li>
+                                    <li>Make sure to check "Add Python to PATH" during installation</li>
+                                </ul>
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-2-circle-fill text-success me-2"></i>
+                                <strong>إنشاء البيئة الافتراضية (Create Virtual Environment)</strong>
+                                <pre><code># Create virtual environment
 python -m venv venv
 
 # Activate virtual environment
@@ -390,77 +567,88 @@ python -m venv venv
 venv\Scripts\activate
 # Linux/Mac
 source venv/bin/activate</code></pre>
-                                    </li>
-                                    <li class="mb-3">
-                                        <i class="bi bi-3-circle-fill text-success me-2"></i>
-                                        <strong>تثبيت المتطلبات (Install Requirements)</strong>
-                                        <pre><code>pip install mysql-connector-python</code></pre>
-                                    </li>
-                                </ol>
-                            </div>
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-3-circle-fill text-success me-2"></i>
+                                <strong>تثبيت المتطلبات (Install Requirements)</strong>
+                                <pre><code>pip install mysql-connector-python</code></pre>
+                            </li>
+                        </ol>
+                    </div>
 
-                            <div class="deployment-step mb-4" data-step="3">
-                                <h4 class="h5">تكوين التطبيق (Application Configuration)</h4>
-                                <ol class="list-unstyled">
-                                    <li class="mb-3">
-                                        <i class="bi bi-1-circle-fill text-success me-2"></i>
-                                        <strong>تعديل إعدادات قاعدة البيانات (Update Database Settings)</strong>
-                                        <p>Edit <code>db_connection.py</code> with your production credentials:</p>
-                                        <pre><code>connection = mysql.connector.connect(
+                    <div class="deployment-step mb-4" data-step="3">
+                        <h4 class="h5">تكوين التطبيق (Application Configuration)</h4>
+                        <ol class="list-unstyled">
+                            <li class="mb-3">
+                                <i class="bi bi-1-circle-fill text-success me-2"></i>
+                                <strong>تعديل إعدادات قاعدة البيانات (Update Database Settings)</strong>
+                                <p>Edit <code>db_connection.py</code> with your production credentials:</p>
+                                <pre><code>connection = mysql.connector.connect(
     host='your_production_host',
     user='your_production_user',
     password='your_secure_password',
     database='training_mm'
 )</code></pre>
-                                    </li>
-                                </ol>
-                            </div>
-
-                            <div class="deployment-step mb-4" data-step="4">
-                                <h4 class="h5">تشغيل التطبيق (Run Application)</h4>
-                                <ol class="list-unstyled">
-                                    <li class="mb-3">
-                                        <i class="bi bi-1-circle-fill text-success me-2"></i>
-                                        <strong>تهيئة قاعدة البيانات (Initialize Database)</strong>
-                                        <pre><code>python db_connection.py</code></pre>
-                                    </li>
-                                    <li class="mb-3">
-                                        <i class="bi bi-2-circle-fill text-success me-2"></i>
-                                        <strong>بدء التطبيق (Start Application)</strong>
-                                        <pre><code>python admin_panel.py</code></pre>
-                                    </li>
-                                </ol>
-                            </div>
-
-                            <div class="alert alert-info">
-                                <h5 class="alert-heading"><i class="bi bi-info-circle-fill me-2"></i>نصائح للنشر (Deployment Tips)</h5>
-                                <ul class="mb-0">
-                                    <li>Use strong passwords in production</li>
-                                    <li>Regularly backup your database</li>
-                                    <li>Keep Python and all packages updated</li>
-                                    <li>Monitor system resources and logs</li>
-                                    <li>Consider using a process manager like PM2 or Supervisor</li>
-                                </ul>
-                            </div>
-                        </div>
+                            </li>
+                        </ol>
                     </div>
-                </section>
 
-                <div class="alert alert-warning mt-5">
-                    <h4 class="alert-heading"><i class="bi bi-exclamation-triangle-fill me-2"></i>Security Note</h4>
-                    <p class="mb-0">Please change the default database credentials before deploying to production. Never expose sensitive database credentials in your code or version control system.</p>
+                    <div class="deployment-step mb-4" data-step="4">
+                        <h4 class="h5">تشغيل التطبيق (Run Application)</h4>
+                        <ol class="list-unstyled">
+                            <li class="mb-3">
+                                <i class="bi bi-1-circle-fill text-success me-2"></i>
+                                <strong>تهيئة قاعدة البيانات (Initialize Database)</strong>
+                                <pre><code>python db_connection.py</code></pre>
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-2-circle-fill text-success me-2"></i>
+                                <strong>بدء التطبيق (Start Application)</strong>
+                                <pre><code>python admin_panel.py</code></pre>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h5 class="alert-heading"><i class="bi bi-info-circle-fill me-2"></i>نصائح للنشر (Deployment Tips)</h5>
+                        <ul class="mb-0">
+                            <li>Use strong passwords in production</li>
+                            <li>Regularly backup your database</li>
+                            <li>Keep Python and all packages updated</li>
+                            <li>Monitor system resources and logs</li>
+                            <li>Consider using a process manager like PM2 or Supervisor</li>
+                        </ul>
+                    </div>
                 </div>
-
-                <footer class="mt-5 mb-5 text-center text-muted">
-                    <p>Training Management System (TMS) - A comprehensive solution for managing training programs</p>
-                </footer>
             </div>
+        </section>
+
+        <div class="alert alert-warning mt-5">
+            <h4 class="alert-heading"><i class="bi bi-exclamation-triangle-fill me-2"></i>ملاحظة أمنية</h4>
+            <p class="mb-0">يرجى تغيير بيانات اتصال القاعدة البيانية الافتراضية قبل النشر إلى الإنتاج. لا تعرض بيانات اتصال القاعدة البيانية الحساسة في رمزك أو نظام نسخ المستودع.</p>
         </div>
+
+        <section class="mb-5">
+            <h2 class="text-center mb-5">لقطات من البرنامج</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <img src="https://via.placeholder.com/600x400?text=Screenshot+1" alt="لقطة من البرنامج" class="img-fluid screenshot">
+                </div>
+                <div class="col-md-6">
+                    <img src="https://via.placeholder.com/600x400?text=Screenshot+2" alt="لقطة من البرنامج" class="img-fluid screenshot">
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-5 mb-5 text-center text-muted">
+            <p>Training Management System (TMS) - A comprehensive solution for managing training programs</p>
+        </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Theme Toggle
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             const html = document.documentElement;
@@ -471,7 +659,6 @@ source venv/bin/activate</code></pre>
                 localStorage.setItem('theme', theme);
             };
             
-            // Check for saved theme preference
             const savedTheme = localStorage.getItem('theme') || 'light';
             setTheme(savedTheme);
             
@@ -479,6 +666,16 @@ source venv/bin/activate</code></pre>
                 const currentTheme = html.getAttribute('data-bs-theme');
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 setTheme(newTheme);
+            });
+
+            // Navbar Scroll Effect
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             });
         });
     </script>
