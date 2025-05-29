@@ -158,6 +158,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#schema">Schema</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#deployment">نشر البرنامج</a>
+                    </li>
                 </ul>
                 <button class="theme-toggle" id="themeToggle">
                     <i class="bi bi-sun-fill" id="themeIcon"></i>
@@ -337,6 +340,109 @@ organizations <span class="relationship-arrow">←</span> external_supervisors</
                             <li><i class="bi bi-person-gear me-2"></i><code>role</code> (ENUM: admin, trainer, trainee, supervisor)</li>
                             <li><i class="bi bi-clock me-2"></i><code>created_at</code> (TIMESTAMP)</li>
                         </ul>
+                    </div>
+                </section>
+
+                <section id="deployment" class="mb-5">
+                    <h2 class="mb-4">نشر البرنامج (Deployment Guide)</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="deployment-step mb-4" data-step="1">
+                                <h4 class="h5">إعداد قاعدة البيانات (Database Setup)</h4>
+                                <ol class="list-unstyled">
+                                    <li class="mb-3">
+                                        <i class="bi bi-1-circle-fill text-success me-2"></i>
+                                        <strong>تثبيت MySQL Server على الخادم (Install MySQL Server)</strong>
+                                        <ul>
+                                            <li>Download from <a href="https://dev.mysql.com/downloads/mysql/" target="_blank">MySQL Official Website</a></li>
+                                            <li>Follow installation instructions for your operating system</li>
+                                        </ul>
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="bi bi-2-circle-fill text-success me-2"></i>
+                                        <strong>تكوين قاعدة البيانات (Configure Database)</strong>
+                                        <pre><code>mysql -u root -p
+CREATE DATABASE training_mm;
+USE training_mm;</code></pre>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="deployment-step mb-4" data-step="2">
+                                <h4 class="h5">إعداد البيئة (Environment Setup)</h4>
+                                <ol class="list-unstyled">
+                                    <li class="mb-3">
+                                        <i class="bi bi-1-circle-fill text-success me-2"></i>
+                                        <strong>تثبيت Python (Install Python)</strong>
+                                        <ul>
+                                            <li>Download Python 3.x from <a href="https://www.python.org/downloads/" target="_blank">Python.org</a></li>
+                                            <li>Make sure to check "Add Python to PATH" during installation</li>
+                                        </ul>
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="bi bi-2-circle-fill text-success me-2"></i>
+                                        <strong>إنشاء البيئة الافتراضية (Create Virtual Environment)</strong>
+                                        <pre><code># Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# Windows
+venv\Scripts\activate
+# Linux/Mac
+source venv/bin/activate</code></pre>
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="bi bi-3-circle-fill text-success me-2"></i>
+                                        <strong>تثبيت المتطلبات (Install Requirements)</strong>
+                                        <pre><code>pip install mysql-connector-python</code></pre>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="deployment-step mb-4" data-step="3">
+                                <h4 class="h5">تكوين التطبيق (Application Configuration)</h4>
+                                <ol class="list-unstyled">
+                                    <li class="mb-3">
+                                        <i class="bi bi-1-circle-fill text-success me-2"></i>
+                                        <strong>تعديل إعدادات قاعدة البيانات (Update Database Settings)</strong>
+                                        <p>Edit <code>db_connection.py</code> with your production credentials:</p>
+                                        <pre><code>connection = mysql.connector.connect(
+    host='your_production_host',
+    user='your_production_user',
+    password='your_secure_password',
+    database='training_mm'
+)</code></pre>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="deployment-step mb-4" data-step="4">
+                                <h4 class="h5">تشغيل التطبيق (Run Application)</h4>
+                                <ol class="list-unstyled">
+                                    <li class="mb-3">
+                                        <i class="bi bi-1-circle-fill text-success me-2"></i>
+                                        <strong>تهيئة قاعدة البيانات (Initialize Database)</strong>
+                                        <pre><code>python db_connection.py</code></pre>
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="bi bi-2-circle-fill text-success me-2"></i>
+                                        <strong>بدء التطبيق (Start Application)</strong>
+                                        <pre><code>python admin_panel.py</code></pre>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="alert alert-info">
+                                <h5 class="alert-heading"><i class="bi bi-info-circle-fill me-2"></i>نصائح للنشر (Deployment Tips)</h5>
+                                <ul class="mb-0">
+                                    <li>Use strong passwords in production</li>
+                                    <li>Regularly backup your database</li>
+                                    <li>Keep Python and all packages updated</li>
+                                    <li>Monitor system resources and logs</li>
+                                    <li>Consider using a process manager like PM2 or Supervisor</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
