@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar {
+            background-color: #24292e;
+        }
+        .navbar-brand {
+            color: white !important;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+        }
+        .nav-link:hover {
+            color: white !important;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            border-radius: 6px;
+        }
+        code {
+            color: #24292e;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">TMS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#setup">Setup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#schema">Schema</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="mb-4">Training Management System</h1>
+                <p class="lead">A MySQL-based training management system for tracking students, organizations, supervisors, and training reports.</p>
+
+                <h2 id="features" class="mt-5">Features</h2>
+                <ul>
+                    <li>Student management with academic information</li>
+                    <li>Organization tracking</li>
+                    <li>Internal and external supervisor management</li>
+                    <li>Training report submission and evaluation</li>
+                    <li>User role management (admin, trainer, trainee, supervisor)</li>
+                </ul>
+
+                <h2 id="requirements" class="mt-5">Requirements</h2>
+                <ul>
+                    <li>Python 3.x</li>
+                    <li>MySQL Server</li>
+                    <li><code>mysql-connector-python</code> package</li>
+                </ul>
+
+                <h2 id="setup" class="mt-5">Setup</h2>
+                <ol>
+                    <li>
+                        <p>Install the required package:</p>
+                        <pre><code>pip install mysql-connector-python</code></pre>
+                    </li>
+                    <li>
+                        <p>Configure your MySQL connection:</p>
+                        <ul>
+                            <li>Update the database credentials in <code>db_connection.py</code></li>
+                            <li>Default credentials:
+                                <ul>
+                                    <li>Host: localhost</li>
+                                    <li>User: root</li>
+                                    <li>Password: mahmoud</li>
+                                    <li>Database: training_mm</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>Initialize the database:</p>
+                        <pre><code>python db_connection.py</code></pre>
+                    </li>
+                </ol>
+
+                <h2 id="schema" class="mt-5">Database Schema</h2>
+                <p>The system includes the following tables:</p>
+                <ul>
+                    <li>students</li>
+                    <li>organizations</li>
+                    <li>internal_supervisors</li>
+                    <li>external_supervisors</li>
+                    <li>training_reports</li>
+                    <li>evaluations</li>
+                    <li>users</li>
+                </ul>
+
+                <div class="alert alert-warning mt-5">
+                    <h4 class="alert-heading">Security Note</h4>
+                    <p class="mb-0">Please change the default database credentials before deploying to production.</p>
+                </div>
+
+                <footer class="mt-5 mb-5 text-center text-muted">
+                    <p>View this project on <a href="https://github.com/mahmoud2005123/TMS">GitHub</a></p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
